@@ -20,3 +20,7 @@ The goal of this project is to create a web application which allows users to vi
 - Node.js
 - Express
 - MongoDB / GraphQL (TBD)
+
+## User Interface
+
+![Initial UI draft](https://github.com/otsha/habit-tracker/blob/master/documentation/ui-sketch.jpg)
