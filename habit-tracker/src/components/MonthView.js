@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import HabitList from './HabitList'
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -36,35 +36,63 @@ const dateList = [
         month: 3,
         year: 2019,
         habitsMarked: [habitC]
+    },
+    {
+        day: 6,
+        month: 4,
+        year: 2019,
+        habitsMarked: [habitA, habitC]
     }
 ]
 
 const currentDate = new Date()
-const currentMonth = currentDate.getMonth()
+const currentMonth = 0
+
+const headers = []
+for (let i = 1; i <= noOfDays[currentMonth]; i++) {
+    const header = <th key={i}>{i}</th>
+    headers.push(header)
+}
 
 const MonthView = () => {
-    const [month, setMonth] = useState(currentMonth)
+    const [displayMonth, setDisplayMonth] = useState(currentMonth)
     const [dates, setDates] = useState([])
-    const [length, setLength] = useState([noOfDays[month]])
+
+    useEffect(() => {
+        setDates(dateList.filter(date => date.month === displayMonth + 1))
+    })
 
     const addDate = (dateObject) => {
-        console.log(dateObject)
-        dateList.push(dateObject)
-        setDates(dateList)
+        const newDate = {
+            ...dateObject,
+            month: displayMonth + 1,
+            year: currentDate.getFullYear()
+        }
+        console.log(newDate)
+        dateList.push(newDate)
     }
 
-    const changeMonth = (n) => {
-        setMonth(month + n)
-        setDates(dateList.filter(d => d.month === month))
-        setLength(noOfDays[month])
+    const handleMonthChange = (value) => {
+        setDisplayMonth(value)
+        setDates(dateList.filter(d => d.month === displayMonth + 1))
     }
 
     return (
         <div>
-            <h2>{`${monthNames[month]} ${currentDate.getFullYear()}`}</h2>
-            <HabitList dates={dates} habits={habits} noOfDays={length} addDate={addDate} />
-            <button onClick={() => changeMonth(-1)}>previous month</button>
-            <button onClick={() => changeMonth(1)}>next month</button>
+            <h2>{`${monthNames[displayMonth]} (${displayMonth + 1}/${currentDate.getFullYear()})`}</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Habit</th>
+                        {headers.slice(0, noOfDays[displayMonth]).map(header => header)}
+                    </tr>
+                    <HabitList dates={dates} habits={habits} noOfDays={noOfDays[displayMonth]} addDate={addDate} month={displayMonth} />
+                </tbody>
+            </table>
+            <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>
+            <button onClick={() => handleMonthChange(currentMonth)}>current month</button>
+            <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
+            <button onClick={() => console.log(dates)}>show dates</button>
         </div>
     )
 }
