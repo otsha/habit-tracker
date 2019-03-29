@@ -62,6 +62,7 @@ const MonthView = () => {
         setDates(dateList.filter(date => date.month === displayMonth + 1))
     })
 
+    /* add a date if it doesn't exist on the list yet */
     const addDate = (dateObject) => {
         const newDate = {
             ...dateObject,
@@ -92,7 +93,7 @@ const MonthView = () => {
             <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>
             <button onClick={() => handleMonthChange(currentMonth)}>current month</button>
             <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
-            <button onClick={() => console.log(dates)}>show dates</button>
+            <button onClick={() => console.log(dates)}>debug: show dates</button>
         </div>
     )
 }
