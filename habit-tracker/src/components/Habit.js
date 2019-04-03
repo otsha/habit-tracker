@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Checkbox from './Checkbox'
 
-const Habit = ({ habit, dates, noOfDays, addDate, month }) => {
+const Habit = ({ habit, dates, noOfDays, addDate, removeHabit }) => {
     const [checkboxes, setCheckboxes] = useState([])
 
     useEffect(() => {
@@ -16,7 +16,6 @@ const Habit = ({ habit, dates, noOfDays, addDate, month }) => {
             boxes.push(box)
         }
         setCheckboxes(boxes)
-        console.log('month:', month)
     })
 
     return (
@@ -27,6 +26,7 @@ const Habit = ({ habit, dates, noOfDays, addDate, month }) => {
                     <Checkbox addDate={addDate} thisDate={box.thisDate} i={box.i} habit={box.habit} defaultChecked={box.isChecked} />
                 </td>)
             }
+            <td><button onClick={() => removeHabit(habit.name)}>x</button></td>
         </tr>
     )
 }

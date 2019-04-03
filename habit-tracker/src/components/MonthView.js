@@ -51,7 +51,7 @@ const currentMonth = currentDate.getMonth()
 const currentYear = currentDate.getFullYear()
 
 const headers = []
-for (let i = 1; i <= noOfDays[currentMonth]; i++) {
+for (let i = 1; i <= noOfDays[currentMonth] + 1; i++) {
     const header = <th key={i}>{i}</th>
     headers.push(header)
 }
@@ -63,7 +63,11 @@ const MonthView = () => {
     const [habits, setHabits] = useState(habitList)
 
     useEffect(() => {
-        setDates(dateList.filter(date => date.month === displayMonth + 1))
+        setDates(
+            dateList
+                .filter(date => date.year === displayYear)
+                .filter(date => date.month === displayMonth + 1)
+        )
     })
 
     /* add a date if it doesn't exist on the list yet */
@@ -82,6 +86,11 @@ const MonthView = () => {
         setHabits(habits.concat(habitObject))
     }
 
+    const removeHabit = (name) => {
+        console.log('removing habit', name)
+        setHabits(habits.filter(h => h.name !== name))
+    }
+
     const handleMonthChange = (value) => {
         if (value < 0) {
             setDisplayMonth(11)
@@ -92,7 +101,6 @@ const MonthView = () => {
         } else {
             setDisplayMonth(value)
         }
-        setDates(dateList.filter(d => d.month === displayMonth + 1))
     }
 
     return (
@@ -104,11 +112,10 @@ const MonthView = () => {
                         <th>Habit</th>
                         {headers.slice(0, noOfDays[displayMonth]).map(header => header)}
                     </tr>
-                    <HabitList dates={dates} habits={habits} noOfDays={noOfDays[displayMonth]} addDate={addDate} month={displayMonth} />
+                    <HabitList dates={dates} habits={habits} noOfDays={noOfDays[displayMonth]} addDate={addDate} removeHabit={removeHabit} />
                 </tbody>
             </table>
             <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>
-            <button onClick={() => handleMonthChange(currentMonth)}>current month</button>
             <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
             <button onClick={() => console.log(dates)}>debug:   show dates</button>
             <HabitForm addHabit={addHabit} />
