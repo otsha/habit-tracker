@@ -46,7 +46,8 @@ const dateList = [
 ]
 
 const currentDate = new Date()
-const currentMonth = 0
+const currentMonth = currentDate.getMonth()
+const currentYear = currentDate.getFullYear()
 
 const headers = []
 for (let i = 1; i <= noOfDays[currentMonth]; i++) {
@@ -56,6 +57,7 @@ for (let i = 1; i <= noOfDays[currentMonth]; i++) {
 
 const MonthView = () => {
     const [displayMonth, setDisplayMonth] = useState(currentMonth)
+    const [displayYear, setDisplayYear] = useState(currentYear)
     const [dates, setDates] = useState([])
 
     useEffect(() => {
@@ -67,20 +69,28 @@ const MonthView = () => {
         const newDate = {
             ...dateObject,
             month: displayMonth + 1,
-            year: currentDate.getFullYear()
+            year: displayYear
         }
         console.log(newDate)
         dateList.push(newDate)
     }
 
     const handleMonthChange = (value) => {
-        setDisplayMonth(value)
+        if (value < 0) {
+            setDisplayMonth(11)
+            setDisplayYear(displayYear - 1)
+        } else if (value > 11) {
+            setDisplayMonth(0)
+            setDisplayYear(displayYear + 1)
+        } else {
+            setDisplayMonth(value)
+        }
         setDates(dateList.filter(d => d.month === displayMonth + 1))
     }
 
     return (
         <div>
-            <h2>{`${monthNames[displayMonth]} (${displayMonth + 1}/${currentDate.getFullYear()})`}</h2>
+            <h2>{`${monthNames[displayMonth]} (${displayMonth + 1}/${displayYear})`}</h2>
             <table>
                 <tbody>
                     <tr>
@@ -93,7 +103,7 @@ const MonthView = () => {
             <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>
             <button onClick={() => handleMonthChange(currentMonth)}>current month</button>
             <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
-            <button onClick={() => console.log(dates)}>debug: show dates</button>
+            <button onClick={() => console.log(dates)}>debug:   show dates</button>
         </div>
     )
 }
