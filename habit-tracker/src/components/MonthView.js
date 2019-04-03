@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import HabitList from './HabitList'
+import HabitForm from './HabitForm'
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const noOfDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -16,7 +17,7 @@ const habitC = {
     name: 'Habit #C'
 }
 
-const habits = [habitA, habitB, habitC]
+const habitList = [habitA, habitB, habitC]
 
 const dateList = [
     {
@@ -59,6 +60,7 @@ const MonthView = () => {
     const [displayMonth, setDisplayMonth] = useState(currentMonth)
     const [displayYear, setDisplayYear] = useState(currentYear)
     const [dates, setDates] = useState([])
+    const [habits, setHabits] = useState(habitList)
 
     useEffect(() => {
         setDates(dateList.filter(date => date.month === displayMonth + 1))
@@ -73,6 +75,11 @@ const MonthView = () => {
         }
         console.log(newDate)
         dateList.push(newDate)
+    }
+
+    const addHabit = (habitObject) => {
+        console.log('adding', habitObject)
+        setHabits(habits.concat(habitObject))
     }
 
     const handleMonthChange = (value) => {
@@ -104,6 +111,7 @@ const MonthView = () => {
             <button onClick={() => handleMonthChange(currentMonth)}>current month</button>
             <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
             <button onClick={() => console.log(dates)}>debug:   show dates</button>
+            <HabitForm addHabit={addHabit} />
         </div>
     )
 }
