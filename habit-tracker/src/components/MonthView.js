@@ -25,17 +25,6 @@ const MonthView = (props) => {
     setHabits(props.habits)
   })
 
-  /* add a date if it doesn't exist on the list yet */
-  const addDate = (dateObject) => {
-    const newDate = {
-      ...dateObject,
-      month: displayMonth + 1,
-      year: displayYear
-    }
-    console.log(newDate)
-    props.addDate(newDate)
-  }
-
   const handleMonthChange = (value) => {
     if (value < 0) {
       setDisplayMonth(11)
@@ -57,7 +46,7 @@ const MonthView = (props) => {
             <th>Habit</th>
             {headers.slice(0, noOfDays[displayMonth]).map(header => header)}
           </tr>
-          {habits.map(h => <Habit key={h.name} habit={h} displayYear={displayYear} displayMonth={displayMonth} noOfDays={noOfDays[displayMonth]} addDate={addDate} />)}
+          {habits.map(h => <Habit key={h.name} habit={h} displayYear={displayYear} displayMonth={displayMonth} noOfDays={noOfDays[displayMonth]} />)}
         </tbody>
       </table>
       <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>

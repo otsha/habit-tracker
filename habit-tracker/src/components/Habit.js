@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Checkbox from './Checkbox'
 import { deleteHabit } from '../reducers/habitReducer'
 
-const Habit = ({ habit, dates, noOfDays, addDate, deleteHabit, displayYear, displayMonth }) => {
+const Habit = ({ habit, dates, noOfDays, deleteHabit, displayYear, displayMonth }) => {
   const [displayDates, setDisplayDates] = useState(dates)
   const [checkboxes, setCheckboxes] = useState([])
 
@@ -16,11 +16,7 @@ const Habit = ({ habit, dates, noOfDays, addDate, deleteHabit, displayYear, disp
     let boxes = []
     for (let i = 1; i <= noOfDays; i++) {
       const thisDate = displayDates.filter(d => d.day === i)[0]
-      let isChecked = false
-      if (thisDate !== undefined) {
-        thisDate.habitsMarked.filter(h => h.name === habit.name) > 0 ? isChecked = true : isChecked = false
-      }
-      const box = { thisDate, i, habit, isChecked }
+      const box = { thisDate, i, habit, displayMonth, displayYear }
       boxes.push(box)
     }
     setCheckboxes(boxes)
@@ -31,7 +27,7 @@ const Habit = ({ habit, dates, noOfDays, addDate, deleteHabit, displayYear, disp
       <td>{habit.name}</td>
       {checkboxes.map(box =>
         <td key={box.i}>
-          <Checkbox addDate={addDate} thisDate={box.thisDate} i={box.i} habit={box.habit} defaultChecked={box.isChecked} />
+          <Checkbox {...box} />
         </td>)
       }
       <td><button onClick={() => deleteHabit(habit)}>x</button></td>
