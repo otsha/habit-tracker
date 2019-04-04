@@ -1,23 +1,29 @@
 import React, { useState } from 'react'
+import { newHabit } from '../reducers/habitReducer'
+import { connect } from 'react-redux'
 
-const HabitForm = ({ addHabit }) => {
-    const [habitName, setHabitName] = useState('')
+const HabitForm = (props) => {
+  const [habitName, setHabitName] = useState('')
 
-    const handleNewHabit = (event) => {
-        event.preventDefault()
-        addHabit({ name: habitName })
-        setHabitName('')
-    }
+  const handleNewHabit = (event) => {
+    event.preventDefault()
+    props.newHabit({ name: habitName })
+    setHabitName('')
+  }
 
-    return (
-        <div>
-            <h3>Add a Habit</h3>
-            <form onSubmit={handleNewHabit}>
-                <input type='text' value={habitName} onChange={(event) => setHabitName(event.target.value)} />
-                <button type='submit'>Add new...</button>
-            </form>
-        </div>
-    )
+  return (
+    <div>
+      <h3>Add a Habit</h3>
+      <form onSubmit={handleNewHabit}>
+        <input type='text' value={habitName} onChange={(event) => setHabitName(event.target.value)} />
+        <button type='submit'>Add new...</button>
+      </form>
+    </div>
+  )
 }
 
-export default HabitForm
+const mapDispatchToProps = {
+  newHabit
+}
+
+export default connect(null, mapDispatchToProps)(HabitForm)
