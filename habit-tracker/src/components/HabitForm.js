@@ -7,7 +7,7 @@ const HabitForm = (props) => {
 
   const handleNewHabit = (event) => {
     event.preventDefault()
-    props.newHabit({ name: habitName })
+    props.newHabit({ name: habitName, important: false })
     setHabitName('')
   }
 

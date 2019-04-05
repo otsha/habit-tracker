@@ -1,13 +1,16 @@
 const habitA = {
-  name: 'Habit #A'
+  name: 'Habit #A',
+  important: false
 }
 
 const habitB = {
-  name: 'Habit #B'
+  name: 'Habit #B',
+  important: true
 }
 
 const habitC = {
-  name: 'Habit #C'
+  name: 'Habit #C',
+  important: false
 }
 
 const initialHabits = [habitA, habitB, habitC]
@@ -32,12 +35,25 @@ export const deleteHabit = (habit) => {
   }
 }
 
+export const highlightHabit = (habit) => {
+  console.log('highlightig', habit)
+  habit.important = !habit.important
+  return async dispatch => {
+    dispatch({
+      type: 'HIGHLIGHTHABIT',
+      data: habit
+    })
+  }
+}
+
 const reducer = (state = initialHabits, action) => {
   switch (action.type) {
     case 'NEWHABIT':
       return state.concat(action.data)
     case 'DELETEHABIT':
       return state.filter(habit => habit.name !== action.data.name)
+    case 'HIGHLIGHTHABIT':
+      return state.map(habit => habit.name === action.data.name ? action.data : habit)
     default:
       return state
   }
