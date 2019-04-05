@@ -34,7 +34,7 @@ const Habit = ({ habit, dates, noOfDays, deleteHabit, displayYear, displayMonth,
 
   return (
     <tr>
-      <td onClick={toggleHighlighted} style={highlighted ? { backgroundColor: 'yellow'} : { backgroundColor: ''}}>{habit.name}</td>
+      <td onClick={toggleHighlighted} style={highlighted ? { backgroundColor: 'yellow' } : { backgroundColor: '' }}>{habit.name}</td>
       {checkboxes.map(box =>
         <td key={box.i}>
           <Checkbox {...box} />

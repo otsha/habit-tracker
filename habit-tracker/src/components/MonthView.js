@@ -11,7 +11,7 @@ const currentMonth = currentDate.getMonth()
 const currentYear = currentDate.getFullYear()
 
 const headers = []
-for (let i = 1; i <= noOfDays[currentMonth] + 1; i++) {
+for (let i = 1; i <= 31; i++) {
   const header = <th key={i}>{i}</th>
   headers.push(header)
 }

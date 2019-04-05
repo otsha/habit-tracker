@@ -36,7 +36,7 @@ export const deleteHabit = (habit) => {
 }
 
 export const highlightHabit = (habit) => {
-  console.log('highlightig', habit)
+  console.log('highlighting', habit)
   habit.important = !habit.important
   return async dispatch => {
     dispatch({
