@@ -3,21 +3,21 @@ import { connect } from 'react-redux'
 import Checkbox from './Checkbox'
 import { deleteHabit, highlightHabit } from '../reducers/habitReducer'
 
-const Habit = ({ habit, dates, noOfDays, deleteHabit, displayYear, displayMonth, highlightHabit }) => {
+const Habit = ({ habit, dates, display, deleteHabit, highlightHabit }) => {
   const [displayDates, setDisplayDates] = useState(dates)
   const [checkboxes, setCheckboxes] = useState([])
   const [highlighted, setHighlighted] = useState(false)
 
   useEffect(() => {
-    const dateList = dates.filter(date => date.year === displayYear).filter(date => date.month === displayMonth + 1)
+    const dateList = dates.filter(date => date.year === display.displayYear).filter(date => date.month === display.displayMonth + 1)
     setDisplayDates(dateList)
   })
 
   useEffect(() => {
     let boxes = []
-    for (let i = 1; i <= noOfDays; i++) {
+    for (let i = 1; i <= display.displayMonthLength; i++) {
       const thisDate = displayDates.filter(d => d.day === i)[0]
-      const box = { thisDate, i, habit, displayMonth, displayYear }
+      const box = { thisDate, i, habit }
       boxes.push(box)
     }
     setCheckboxes(boxes)
@@ -47,7 +47,8 @@ const Habit = ({ habit, dates, noOfDays, deleteHabit, displayYear, displayMonth,
 
 const mapStateToProps = (state) => {
   return ({
-    dates: state.dates
+    dates: state.dates,
+    display: state.display
   })
 }
 

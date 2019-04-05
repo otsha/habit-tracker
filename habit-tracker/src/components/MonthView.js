@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Habit from './Habit'
 import { addDate } from '../reducers/dateReducer'
-
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-const noOfDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-const currentDate = new Date()
-const currentMonth = currentDate.getMonth()
-const currentYear = currentDate.getFullYear()
+import { changeDisplayMonth } from '../reducers/displayReducer'
 
 const headers = []
 for (let i = 1; i <= 31; i++) {
@@ -17,40 +11,20 @@ for (let i = 1; i <= 31; i++) {
 }
 
 const MonthView = (props) => {
-  const [displayMonth, setDisplayMonth] = useState(currentMonth)
-  const [displayYear, setDisplayYear] = useState(currentYear)
-  const [habits, setHabits] = useState(props.habits)
-
-  useEffect(() => {
-    setHabits(props.habits)
-  })
-
-  const handleMonthChange = (value) => {
-    if (value < 0) {
-      setDisplayMonth(11)
-      setDisplayYear(displayYear - 1)
-    } else if (value > 11) {
-      setDisplayMonth(0)
-      setDisplayYear(displayYear + 1)
-    } else {
-      setDisplayMonth(value)
-    }
-  }
-
   return (
     <div>
-      <h2>{`${monthNames[displayMonth]} (${displayMonth + 1}/${displayYear})`}</h2>
+      <h2>{`${props.display.displayMonthName} (${props.display.displayMonth + 1}/${props.display.displayYear})`}</h2>
       <table>
         <tbody>
           <tr>
             <th>Habit</th>
-            {headers.slice(0, noOfDays[displayMonth]).map(header => header)}
+            {headers.slice(0, props.display.displayMonthLength).map(header => header)}
           </tr>
-          {habits.map(h => <Habit key={h.name} habit={h} displayYear={displayYear} displayMonth={displayMonth} noOfDays={noOfDays[displayMonth]} />)}
+          {props.habits.map(h => <Habit key={h.name} habit={h} />)}
         </tbody>
       </table>
-      <button onClick={() => handleMonthChange(displayMonth - 1)}>previous month</button>
-      <button onClick={() => handleMonthChange(displayMonth + 1)}>next month</button>
+      <button onClick={() => props.changeDisplayMonth(props.display.displayMonth - 1)}>previous month</button>
+      <button onClick={() => props.changeDisplayMonth(props.display.displayMonth + 1)}>next month</button>
     </div>
   )
 }
@@ -59,12 +33,14 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     habits: state.habits,
-    dates: state.dates
+    dates: state.dates,
+    display: state.display
   }
 }
 
 const mapDispatchToProps = {
-  addDate
+  addDate,
+  changeDisplayMonth
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MonthView)
