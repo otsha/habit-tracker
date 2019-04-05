@@ -8,5 +8,6 @@
 | 29.3 | ~1             | Complete a basic working version of the monthly view. Had issues with checkbox states - using a workaround for now. |
 | 3.4  | ~1             | Fixes to the monthly view, allow changing the year, allow adding and removing habits |
 | 4.4  | ~2             | Start using Redux to control parts of the state of the application |
+| 5.4  | ~1,5           | Allow highlighting important habits, start using ESLint, move display state handling to Redux, refactoring
 
-**Total: 12 hours**
+**Total: 13,5 hours**
