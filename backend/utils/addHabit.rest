@@ -1,0 +1,8 @@
+
+POST http://localhost:3001/api/habits
+Content-Type: application/json
+
+{
+    "name": "habit #NEW",
+    "important": "false"
+}
