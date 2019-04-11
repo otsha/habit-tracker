@@ -1,25 +1,21 @@
-const habitA = {
-  name: 'Habit #A',
-  important: false
-}
+import habitService from '../services/habitService'
 
-const habitB = {
-  name: 'Habit #B',
-  important: true
+export const initHabits = () => {
+  return async dispatch => {
+    const habits = await habitService.getAll()
+    dispatch({
+      type: 'INITHABITS',
+      data: habits
+    })
+  }
 }
-
-const habitC = {
-  name: 'Habit #C',
-  important: false
-}
-
-const initialHabits = [habitA, habitB, habitC]
 
 export const newHabit = (habitObject) => {
   return async dispatch => {
+    const addedHabit = await habitService.addNew(habitObject)
     dispatch({
       type: 'NEWHABIT',
-      data: habitObject
+      data: addedHabit
     })
   }
 }
@@ -46,8 +42,10 @@ export const highlightHabit = (habit) => {
   }
 }
 
-const reducer = (state = initialHabits, action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
+    case 'INITHABITS':
+      return action.data
     case 'NEWHABIT':
       return state.concat(action.data)
     case 'DELETEHABIT':

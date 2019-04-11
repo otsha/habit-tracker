@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Habit from './Habit'
 import { addDate } from '../reducers/dateReducer'
 import { changeDisplayMonth } from '../reducers/displayReducer'
+import { initHabits } from '../reducers/habitReducer'
 
 const headers = []
 for (let i = 1; i <= 31; i++) {
@@ -11,6 +12,11 @@ for (let i = 1; i <= 31; i++) {
 }
 
 const MonthView = (props) => {
+
+  useEffect(() => {
+    props.initHabits()
+  }, [])
+
   return (
     <div>
       <h2>{`${props.display.displayMonthName} (${props.display.displayMonth + 1}/${props.display.displayYear})`}</h2>
@@ -40,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   addDate,
-  changeDisplayMonth
+  changeDisplayMonth,
+  initHabits
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MonthView)
