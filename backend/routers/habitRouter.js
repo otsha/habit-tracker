@@ -55,5 +55,16 @@ habitRouter.delete('/:id', (req, res) => {
   res.status(204).end()
 })
 
+habitRouter.put('/:id', (req, res) => {
+  const habit = habits.find(h => h.id === Number(req.params.id))
+  const updatedHabit = req.body
+  if (habit) {
+    habits = habits.map(h => h.id === habit.id ? updatedHabit : h)
+    res.status(200).end()
+  } else {
+    res.status(400).end()
+  }
+})
+
 
 module.exports = habitRouter
