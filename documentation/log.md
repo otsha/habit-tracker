@@ -10,5 +10,6 @@
 | 4.4  | ~2             | Start using Redux to control parts of the state of the application |
 | 5.4  | ~1,5           | Allow highlighting important habits, start using ESLint, move display state handling to Redux, refactoring |
 | 10.4 | ~1,5           | Init a node backend project, allow listing, posting and deleting habits with a rest client (list still session-sensitive - data lost on server restart) |
+| 11.4 | ~1,25          | Allow listing, posting, deleting and modifying habits in the backend using the front-end of the application |
 
-**Total: 15 hours**
+**Total: 16,25 hours**
