@@ -60,7 +60,7 @@ habitRouter.put('/:id', (req, res) => {
   const updatedHabit = req.body
   if (habit) {
     habits = habits.map(h => h.id === habit.id ? updatedHabit : h)
-    res.status(200).end()
+    res.json(updatedHabit).status(200).end()
   } else {
     res.status(400).end()
   }

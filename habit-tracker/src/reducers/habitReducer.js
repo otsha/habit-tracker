@@ -20,10 +20,10 @@ export const newHabit = (habitObject) => {
   }
 }
 
-// this needs to update to id-based deletion once the back-end has been implemented
 export const deleteHabit = (habit) => {
   console.log('deleting', habit)
   return async dispatch => {
+    await habitService.remove(habit.id)
     dispatch({
       type: 'DELETEHABIT',
       data: habit
@@ -35,9 +35,10 @@ export const highlightHabit = (habit) => {
   console.log('highlighting', habit)
   habit.important = !habit.important
   return async dispatch => {
+    const highlightedHabit = await habitService.update(habit)
     dispatch({
       type: 'HIGHLIGHTHABIT',
-      data: habit
+      data: highlightedHabit
     })
   }
 }
