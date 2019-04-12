@@ -1,19 +1,19 @@
 const mongoose = require('mongoose')
 
 const habitSchema = mongoose.Schema({
-    name: { type: String, required: true },
-    important: Boolean
+  name: { type: String, required: true },
+  important: Boolean
 })
 
 habitSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString()
-        delete returnedObject._id
-        delete returnedObject.__v
-        if (returnedObject.important === undefined) {
-            returnedObject.important = false
-        }
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+    if (returnedObject.important === undefined) {
+      returnedObject.important = false
     }
+  }
 })
 
 module.exports = mongoose.model('Habit', habitSchema)
