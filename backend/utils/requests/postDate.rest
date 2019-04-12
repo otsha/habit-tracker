@@ -1,0 +1,10 @@
+
+POST http://localhost:3001/api/dates
+Content-Type: application/json
+
+{
+    "day": 1,
+    "month": 4,
+    "year": 2019,
+    "habitsMarked": []
+}

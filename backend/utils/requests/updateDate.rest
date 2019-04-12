@@ -1,0 +1,10 @@
+
+PUT http://localhost:3001/api/dates/5cb0768b87d5872acf8b747f
+Content-Type: application/json
+
+
+{
+    "name":"habit #NEW",
+    "important":true,
+    "id":"5cb047bc322b8f222ca8af79"
+}

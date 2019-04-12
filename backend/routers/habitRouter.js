@@ -17,9 +17,7 @@ habitRouter.get('/:id', async (req, res) => {
 
 habitRouter.post('/', async (req, res) => {
   const habitToAdd = new Habit(req.body)
-  
   const result = await habitToAdd.save()
-
   res.json(result).status(201)
 })
 
