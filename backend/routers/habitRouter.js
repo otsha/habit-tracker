@@ -1,4 +1,5 @@
 const habitRouter = require('express').Router()
+const Habit = require('../models/habit')
 
 const habitA = {
   name: 'Habit #A',
@@ -18,9 +19,10 @@ const habitC = {
   id: 3
 }
 
-let habits = [habitA, habitB, habitC]
+let habitList = [habitA, habitB, habitC]
 
-habitRouter.get('/', (req, res) => {
+habitRouter.get('/', async (req, res) => {
+  const habits = await Habit.find({})
   res.json(habits).status(200)
 })
 
@@ -33,21 +35,12 @@ habitRouter.get('/:id', (req, res) => {
   }
 })
 
-habitRouter.post('/', (req, res) => {
-  const habitObject = req.body
+habitRouter.post('/', async (req, res) => {
+  const habitToAdd = new Habit(req.body)
+  
+  const result = await habitToAdd.save()
 
-  let id = Math.floor(Math.random() * 10000)
-  while (habits.find(h => h.id === id)) {
-    id = Math.floor(Math.random() * 10000)
-  }
-
-  const habitToAdd = {
-    ...habitObject,
-    id: id
-  }
-
-  habits.push(habitToAdd)
-  res.json(habitToAdd).status(201)
+  res.json(result).status(201)
 })
 
 habitRouter.delete('/:id', (req, res) => {
