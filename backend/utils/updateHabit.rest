@@ -1,9 +1,8 @@
 
-PUT http://localhost:3001/api/habits/4
+PUT http://localhost:3001/api/habits/5cb047bc322b8f222ca8af79
 Content-Type: application/json
 
 {
     "name": "habit #NEW",
-    "important": "true",
-    "id": 3
+    "important": "true"
 }
