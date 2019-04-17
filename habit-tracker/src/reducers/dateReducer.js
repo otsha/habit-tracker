@@ -1,14 +1,22 @@
-export const addDate = (dateObject) => {
-  const id = `${dateObject.year}${dateObject.month}${dateObject.day}`
-  console.log('marking a date for the first time')
-  console.log('> date created with id', id)
+import dateService from '../services/dateService'
+
+export const initDates = () => {
   return async dispatch => {
+    const dates = await dateService.getAll()
+    dispatch({
+      type: 'INITDATES',
+      data: dates
+    })
+  }
+}
+
+export const addDate = (dateObject) => {
+  console.log('marking a date for the first time')
+  return async dispatch => {
+    const addedDate = await dateService.addNew(dateObject)
     dispatch({
       type: 'ADDDATE',
-      data: {
-        ...dateObject,
-        id: id
-      }
+      data: addedDate
     })
   }
 }
@@ -22,6 +30,7 @@ export const toggleHabit = (date, habit) => {
     date.habitsMarked = date.habitsMarked.concat(habit)
   }
   return async dispatch => {
+    await dateService.update(date)
     dispatch({
       type: 'TOGGLEHABIT',
       data: date
@@ -31,6 +40,8 @@ export const toggleHabit = (date, habit) => {
 
 const reducer = (state = [], action) => {
   switch (action.type) {
+    case 'INITDATES':
+      return action.data
     case 'ADDDATE':
       return state.concat(action.data)
     case 'TOGGLEHABIT':

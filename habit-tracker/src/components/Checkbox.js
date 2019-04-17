@@ -9,7 +9,7 @@ const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) 
     thisDate === undefined
       ? setChecked(false)
       : setChecked(dates.filter(d => d.id === thisDate.id)[0].habitsMarked.filter(h => h.name === habit.name).length > 0)
-  })
+  }, [])
 
   const handleClick = () => {
     console.log('Habit', habit.name, 'clicked on day:', i)

@@ -15,7 +15,6 @@ const addNew = async (habitObject) => {
 
 const update = async (habitObject) => {
   const res = await axios.put(`${url}/${habitObject.id}`, habitObject)
-  console.log(res.data)
   return res.data
 }
 

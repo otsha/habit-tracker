@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Habit from './Habit'
-import { addDate } from '../reducers/dateReducer'
+import { addDate, initDates } from '../reducers/dateReducer'
 import { changeDisplayMonth } from '../reducers/displayReducer'
 import { initHabits } from '../reducers/habitReducer'
 
@@ -15,6 +15,10 @@ const MonthView = (props) => {
 
   useEffect(() => {
     props.initHabits()
+  }, [])
+
+  useEffect(() => {
+    props.initDates()
   }, [])
 
   return (
@@ -47,7 +51,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addDate,
   changeDisplayMonth,
-  initHabits
+  initHabits,
+  initDates
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MonthView)
