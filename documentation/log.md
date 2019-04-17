@@ -12,5 +12,6 @@
 | 10.4 | ~1,5           | Init a node backend project, allow listing, posting and deleting habits with a rest client (list still session-sensitive - data lost on server restart) |
 | 11.4 | ~1,25          | Allow listing, posting, deleting and modifying habits in the backend using the front-end of the application |
 | 12.4 | ~2,25          | Set up a MongoDB Atlas database and configure the backend to use it. Wrestled with ESLint in trying to get it to work with the backend project - couldn't get it to work yet. |
+| 17.4 | ~1,25           | Begin trying to allow date marking to backend from frontend - not working yet, went through a lot of troubleshooting and issue should be identified |
 
-**Total: 18,5 hours**
+**Total: 19,75 hours**
