@@ -3,7 +3,7 @@ const url = 'http://localhost:3001/api/habits'
 
 const getAll = async () => {
   const res = await axios.get(url)
-  console.log(res.data)
+  console.log('Server returned these habits:', res.data)
   return res.data
 }
 

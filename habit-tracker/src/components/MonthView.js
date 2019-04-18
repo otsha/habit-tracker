@@ -40,7 +40,7 @@ const MonthView = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log('Application state:', state)
   return {
     habits: state.habits,
     dates: state.dates,

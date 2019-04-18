@@ -16,7 +16,7 @@ const Habit = ({ habit, dates, display, deleteHabit, highlightHabit }) => {
   useEffect(() => {
     let boxes = []
     for (let i = 1; i <= display.displayMonthLength; i++) {
-      const thisDate = displayDates.filter(d => d.day === i)[0]
+      const thisDate = displayDates.find(d => d.day === i)
       const box = { thisDate, i, habit }
       boxes.push(box)
     }
@@ -25,7 +25,7 @@ const Habit = ({ habit, dates, display, deleteHabit, highlightHabit }) => {
 
   useEffect(() => {
     setHighlighted(habit.important)
-  })
+  }, [])
 
   const toggleHighlighted = () => {
     setHighlighted(!highlighted)
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   deleteHabit,
-  highlightHabit
+  highlightHabit,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Habit)

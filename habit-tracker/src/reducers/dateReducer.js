@@ -22,13 +22,6 @@ export const addDate = (dateObject) => {
 }
 
 export const toggleHabit = (date, habit) => {
-  /*if (date.habitsMarked.filter(h => h.id === habit.id).length > 0) {
-    console.log('toggling', habit, 'OFF on', date)
-    date.habitsMarked = date.habitsMarked.filter(h => h.id !== habit.id)
-  } else {
-    console.log('toggling', habit, 'ON on', date)
-    date.habitsMarked = date.habitsMarked.concat(habit)
-  }*/
   return async dispatch => {
     const updatedDate = await dateService.update(date.id, habit)
     dispatch({
