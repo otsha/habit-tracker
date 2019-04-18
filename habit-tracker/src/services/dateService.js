@@ -13,10 +13,9 @@ const addNew = async (dateObject) => {
   return res.data
 }
 
-const update = async (dateObject) => {
-  // vvv not supposed to be sending a date object, but a habit object!!! fix
-  const res = await axios.put(`${url}/${dateObject.id}`, dateObject)
-  console.log(res.data)
+const update = async (id, habit) => {
+  const res = await axios.put(`${url}/${id}`, habit)
+  console.log('server returned updated date:', res.data)
   return res.data
 }
 

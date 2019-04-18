@@ -20,15 +20,25 @@ dateRouter.post('/', async (req, res) => {
 })
 
 dateRouter.put('/:id', async (req, res) => {
+  console.log('update called for date', req.params.id)
   try {
     const date = await Date.findById(req.params.id)
     const habit = await Habit.findById(req.body.id)
-    date.habitsMarked.push(habit)
 
-    await Date.findByIdAndUpdate(req.params.id, date)
+    if (date.habitsMarked.filter(h => String(h) === String(habit.id)).length === 0) {
+      date.habitsMarked.push(habit)
+      console.log('update: added habit', habit.id, 'to', date.id)
+    } else {
+      date.habitsMarked = date.habitsMarked.filter(h => String(h) !== String(habit.id))
+      console.log('update: removed habit', habit.id, 'from', date.id)
+    }
 
-    res.status(200).end()
+    const updatedDate = await Date.findByIdAndUpdate(req.params.id, date, { new: true })
+
+    res.json(updatedDate).status(200).end()
   } catch (exception) {
+    console.log('update failed')
+    console.log(exception)
     res.json(exception).status(400).end()
   }
 })
