@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   deleteHabit,
-  highlightHabit,
+  highlightHabit
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Habit)

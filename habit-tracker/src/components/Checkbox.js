@@ -6,9 +6,10 @@ const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) 
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
-    thisDate === undefined
+    const date = dates.filter(d => d.year === display.displayYear).filter(d => d.month === display.displayMonth + 1).find(d => d.day === i)
+    date === undefined
       ? setChecked(false)
-      : setChecked(dates.find(d => d.id === thisDate.id).habitsMarked.find(h => String(h.id) === String(habit.id)) !== undefined)
+      : setChecked(date.habitsMarked.find(h => String(h) === String(habit.id)) !== undefined)
   })
 
   const handleClick = () => {
