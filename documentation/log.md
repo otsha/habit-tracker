@@ -14,5 +14,6 @@
 | 12.4 | ~2,25          | Set up a MongoDB Atlas database and configure the backend to use it. Wrestled with ESLint in trying to get it to work with the backend project - couldn't get it to work yet. |
 | 17.4 | ~1,25           | Begin trying to allow date marking to backend from frontend - not working yet, went through a lot of troubleshooting and issue should be identified |
 | 18.4 | ~2,25           | Battling with checkboxes without any luck. |
+| 19.4 | ~1,25           | Finally managed to fix the checkbox issues! Some visual bugs remain, but checkbox status should now be shown correctly. |
 
-**Total: 22 hours**
+**Total: 23,25 hours**
