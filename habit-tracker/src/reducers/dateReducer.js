@@ -16,7 +16,10 @@ export const addDate = (dateObject) => {
     const addedDate = await dateService.addNew(dateObject)
     dispatch({
       type: 'ADDDATE',
-      data: addedDate
+      data: {
+        ...addedDate,
+        habitsMarked: addedDate.habitsMarked.map(habit => habit.id)
+      }
     })
   }
 }

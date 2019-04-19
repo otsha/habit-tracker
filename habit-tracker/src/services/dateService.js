@@ -9,13 +9,13 @@ const getAll = async () => {
 
 const addNew = async (dateObject) => {
   const res = await axios.post(url, dateObject)
-  console.log(res.data)
+  console.log('Server returned added date: ', res.data)
   return res.data
 }
 
 const update = async (id, habit) => {
   const res = await axios.put(`${url}/${id}`, habit)
-  console.log('server returned updated date:', res.data)
+  console.log('Server returned updated date:', res.data)
   return res.data
 }
 

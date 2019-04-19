@@ -7,9 +7,28 @@ const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) 
 
   useEffect(() => {
     const date = dates.filter(d => d.year === display.displayYear).filter(d => d.month === display.displayMonth + 1).find(d => d.day === i)
+    /*
     date === undefined
       ? setChecked(false)
       : setChecked(date.habitsMarked.find(h => String(h) === String(habit.id)) !== undefined)
+    */
+
+    // debug
+    let marked = false
+    if (date !== undefined) {
+      const hab = date.habitsMarked.find(h => h === habit.id)
+      if (hab !== undefined) {
+        marked = true
+      } else {
+        date.habitsMarked.find(h => console.log(h, 'vs', habit.id))
+        console.log('hab was reported as not defined, was:', hab)
+      }
+      setChecked(marked)
+      console.log('changed box', i, 'for habit', habit.name, 'status to', checked, 'because date was', date, 'and habit was marked as', marked)
+    } else {
+      setChecked(marked)
+      console.log('changed box', i, 'for habit', habit.name, 'status to', checked, 'because date was', date)
+    }
   })
 
   const handleClick = () => {
