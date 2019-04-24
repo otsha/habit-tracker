@@ -4,6 +4,6 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI1Y2MwMThlN2E5ZTNmYzUxNGNkYzYzODciLCJpYXQiOjE1NTYwOTQ5MDR9.yE1Jk-UFeSAuugvyFeLA_uOoB2qEdCunL68im5DeaWM
 
 {
-    "name": "Jogging",
+    "name": "Swimming",
     "important": "false"
 }
