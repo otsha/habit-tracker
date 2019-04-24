@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 
 const habitSchema = mongoose.Schema({
   name: { type: String, required: true },
-  important: Boolean
+  important: Boolean,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 habitSchema.set('toJSON', {

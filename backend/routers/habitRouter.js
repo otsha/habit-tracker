@@ -1,9 +1,31 @@
 const habitRouter = require('express').Router()
 const Habit = require('../models/habit')
+const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
-habitRouter.get('/', async (req, res) => {
-  const habits = await Habit.find({})
-  res.json(habits).status(200)
+const authorize = async (req, res, next) => {
+  try {
+    const token = jwt.verify(req.token, process.env.SECRET)
+    if (!req.token || !token.id) {
+      return undefined
+    }
+
+    const user = await User.findById(token.id)
+    return user
+  } catch (exception) {
+    console.log(exception)
+    return undefined
+  }
+}
+
+habitRouter.get('/', async (req, res, next) => {
+  const user = await authorize(req, res, next)
+  if (user) {
+    const habits = await Habit.find({ user: user })
+    res.json(habits).status(200).end()
+  } else {
+    res.json({ error: 'invalid token' }).status(401).end()
+  }
 })
 
 habitRouter.get('/:id', async (req, res) => {
@@ -15,10 +37,16 @@ habitRouter.get('/:id', async (req, res) => {
   }
 })
 
-habitRouter.post('/', async (req, res) => {
-  const habitToAdd = new Habit(req.body)
-  const result = await habitToAdd.save()
-  res.json(result).status(201)
+habitRouter.post('/', async (req, res, next) => {
+  const user = await authorize(req, res, next)
+  if (user) {
+    const habitToAdd = new Habit(req.body)
+    habitToAdd.user = user
+    const result = await habitToAdd.save()
+    res.json(result).status(201)
+  } else {
+    res.json({ error: 'invalid token' }).status(401).end()
+  }
 })
 
 habitRouter.delete('/:id', async (req, res) => {

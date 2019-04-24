@@ -7,7 +7,11 @@ const dateSchema = mongoose.Schema({
   habitsMarked: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Habit'
-  }]
+  }],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 dateSchema.set('toJSON', {
