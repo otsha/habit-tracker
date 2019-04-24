@@ -15,5 +15,6 @@
 | 17.4 | ~1,25           | Begin trying to allow date marking to backend from frontend - not working yet, went through a lot of troubleshooting and issue should be identified |
 | 18.4 | ~2,25           | Battling with checkboxes without any luck. |
 | 19.4 | ~1,25           | Finally managed to fix the checkbox issues! Some visual bugs remain, but checkbox status should now be shown correctly. |
+| 24.4 | ~1,75           | Begin working on user-sensitivity: Habits should now be user-sensitive in the backend. Frontend functionality is definitely broken at this time. |
 
-**Total: 23,25 hours**
+**Total: 25 hours**
