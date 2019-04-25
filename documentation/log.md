@@ -16,5 +16,6 @@
 | 18.4 | ~2,25           | Battling with checkboxes without any luck. |
 | 19.4 | ~1,25           | Finally managed to fix the checkbox issues! Some visual bugs remain, but checkbox status should now be shown correctly. |
 | 24.4 | ~1,75           | Begin working on user-sensitivity: Habits should now be user-sensitive in the backend. Frontend functionality is definitely broken at this time. |
+| 25.4 | ~1,5            | Implement barebones login/register functionality to front-end. No progress on user-sensitivity. |
 
-**Total: 25 hours**
+**Total: 26,5 hours**
