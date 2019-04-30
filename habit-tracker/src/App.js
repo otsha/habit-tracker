@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import MonthView from './components/MonthView'
 import HabitForm from './components/HabitForm'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-import { logout } from './reducers/authReducer'
+import { autoLogin, logout } from './reducers/authReducer'
 
 const App = (props) => {
+
+  useEffect(() => {
+    const storedUser = JSON.parse(window.localStorage.getItem('user'))
+    console.log('found stored user:', storedUser)
+    if (storedUser && storedUser.token) {
+      props.autoLogin(storedUser)
+    }
+  }, [])
 
   const loginView = () => {
     return (
@@ -43,6 +51,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
+  autoLogin,
   logout
 }
 

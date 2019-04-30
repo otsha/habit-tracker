@@ -8,7 +8,6 @@ const LoginForm = (props) => {
 
   const handleLogin = (event) => {
     event.preventDefault()
-    console.log(username, password)
     props.login({ username: username, password: password })
     setUsername('')
     setPassword('')

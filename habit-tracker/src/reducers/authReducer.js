@@ -5,6 +5,7 @@ export const login = (userObject) => {
     const user = await authService.login(userObject)
     if (user) {
       authService.setToken(user.token)
+      window.localStorage.setItem('user', JSON.stringify(user))
       dispatch({
         type: 'LOGIN',
         data: user
@@ -13,8 +14,19 @@ export const login = (userObject) => {
   }
 }
 
+export const autoLogin = (userObject) => {
+  return async dispatch => {
+    authService.setToken(userObject.token)
+    dispatch({
+      type: 'LOGIN',
+      data: userObject
+    })
+  }
+}
+
 export const logout = () => {
   return async dispatch => {
+    window.localStorage.setItem('user', null)
     dispatch({
       type: 'LOGOUT'
     })
