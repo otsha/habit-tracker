@@ -13,20 +13,6 @@ export const login = (userObject) => {
   }
 }
 
-/*
-export const register = (userObject) => {
-  return async dispatch => {
-    const registration = await authService.register(userObject)
-    if (registration) {
-      authService.setToken(user.token)
-      dispatch({
-        type: 'LOGIN',
-        data: user
-      })
-    }
-  }
-}*/
-
 export const logout = () => {
   return async dispatch => {
     dispatch({

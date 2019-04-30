@@ -4,6 +4,7 @@ import MonthView from './components/MonthView'
 import HabitForm from './components/HabitForm'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import { logout } from './reducers/authReducer'
 
 const App = (props) => {
 
@@ -20,6 +21,7 @@ const App = (props) => {
     return (
       <div>
         <p>Logged in as {props.auth.username}</p>
+        <button onClick={props.logout} >Log out</button>
         <MonthView />
         <HabitForm />
       </div>
@@ -40,4 +42,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = {
+  logout
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
