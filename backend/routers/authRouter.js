@@ -20,7 +20,7 @@ authRouter.post('/register', async (req, res) => {
         const savedUser = await newUser.save()
         res.json(savedUser).status(201)
     } catch (exception) {
-        res.json({error: exception}).status(400)
+        res.json({ error: exception }).status(400)
     }
 })
 

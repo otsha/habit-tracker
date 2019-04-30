@@ -16,7 +16,6 @@ const RegisterForm = () => {
       } else {
         console.log('registration failed')
       }
-
     } else {
       console.log('passwords not matching')
     }

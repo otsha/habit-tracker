@@ -5,16 +5,16 @@ const jwt = require('jsonwebtoken')
 
 const authorize = async (req, res, next) => {
   try {
-    const token = jwt.verify(req.token, process.env.SECRET)
-    if (!req.token || !token.id) {
-      return undefined
-    }
+      const token = jwt.verify(req.token, process.env.SECRET)
+      if (!req.token || !token.id) {
+          return undefined
+      }
 
-    const user = await User.findById(token.id)
-    return user
+      const user = await User.findById(token.id)
+      return user
   } catch (exception) {
-    console.log(exception)
-    return undefined
+      console.log(exception)
+      return undefined
   }
 }
 
