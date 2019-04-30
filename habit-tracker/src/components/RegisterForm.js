@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { register } from '../reducers/authReducer'
+import authService from '../services/authService'
 
-const RegisterForm = (props) => {
+const RegisterForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordRepeat, setPasswordRepeat] = useState('')
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault()
-    password === passwordRepeat
-      ? props.register({ username: username, password: password })
-      : console.log('passwords not matching')
+
+    if (password === passwordRepeat) {
+      const registeredUser = await authService.register({ username: username, password: password })
+      if (registeredUser) {
+        console.log('registration successful')
+      } else {
+        console.log('registration failed')
+      }
+
+    } else {
+      console.log('passwords not matching')
+    }
+
     setUsername('')
     setPassword('')
     setPasswordRepeat('')
@@ -33,8 +42,4 @@ const RegisterForm = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  register
-}
-
-export default connect(null, mapDispatchToProps)(RegisterForm)
+export default RegisterForm
