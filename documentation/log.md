@@ -17,5 +17,6 @@
 | 19.4 | ~1,25           | Finally managed to fix the checkbox issues! Some visual bugs remain, but checkbox status should now be shown correctly. |
 | 24.4 | ~1,75           | Begin working on user-sensitivity: Habits should now be user-sensitive in the backend. Frontend functionality is definitely broken at this time. |
 | 25.4 | ~1,5            | Implement barebones login/register functionality to front-end. No progress on user-sensitivity. |
+| 30.4 | ~1,75           | Both dates and habits are now user-sensitive and fetched from the backend based on the user that's currently logged in. Logins are now stored locally until logged out |
 
-**Total: 26,5 hours**
+**Total: 28,25 hours**
