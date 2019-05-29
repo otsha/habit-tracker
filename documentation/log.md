@@ -18,6 +18,6 @@
 | 24.4 | ~1,75           | Begin working on user-sensitivity: Habits should now be user-sensitive in the backend. Frontend functionality is definitely broken at this time. |
 | 25.4 | ~1,5            | Implement barebones login/register functionality to front-end. No progress on user-sensitivity. |
 | 30.4 | ~1,75           | Both dates and habits are now user-sensitive and fetched from the backend based on the user that's currently logged in. Logins are now stored locally until logged out |
-| 29.5 | ~4,5            | Spent a few hours styling the frontend using Semantic UI + began implementing a way to give visual feedback to users regarding their habits |
+| 29.5 | ~3,5            | Spent a few hours styling the frontend using Semantic UI + began implementing a way to give visual feedback to users regarding their habits |
 
-**Total: 32,75 hours**
+**Total: 31,75 hours**
