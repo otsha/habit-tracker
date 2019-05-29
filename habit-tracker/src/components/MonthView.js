@@ -4,10 +4,11 @@ import Habit from './Habit'
 import { addDate, initDates } from '../reducers/dateReducer'
 import { changeDisplayMonth } from '../reducers/displayReducer'
 import { initHabits } from '../reducers/habitReducer'
+import { Table, Button, Icon, Container } from 'semantic-ui-react'
 
 const headers = []
 for (let i = 1; i <= 31; i++) {
-  const header = <th key={i}>{i}</th>
+  const header = <Table.HeaderCell key={i}>{i}</Table.HeaderCell>
   headers.push(header)
 }
 
@@ -22,20 +23,31 @@ const MonthView = (props) => {
   }, [])
 
   return (
-    <div>
+    <Container>
       <h2>{`${props.display.displayMonthName} (${props.display.displayMonth + 1}/${props.display.displayYear})`}</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th>Habit</th>
+      <Table striped celled compact='very'>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Habit</Table.HeaderCell>
             {headers.slice(0, props.display.displayMonthLength).map(header => header)}
-          </tr>
+            <Table.HeaderCell>Delete</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {props.habits.map(h => <Habit key={h.name} habit={h} />)}
-        </tbody>
-      </table>
-      <button onClick={() => props.changeDisplayMonth(props.display.displayMonth - 1)}>previous month</button>
-      <button onClick={() => props.changeDisplayMonth(props.display.displayMonth + 1)}>next month</button>
-    </div>
+        </Table.Body>
+      </Table>
+      <Button onClick={() => props.changeDisplayMonth(props.display.displayMonth - 1)}>
+        <Button.Content>
+          <Icon name='angle left' />
+        </Button.Content>
+      </Button>
+      <Button onClick={() => props.changeDisplayMonth(props.display.displayMonth + 1)}>
+        <Button.Content>
+          <Icon name='angle right' />
+        </Button.Content>
+      </Button>
+    </Container>
   )
 }
 

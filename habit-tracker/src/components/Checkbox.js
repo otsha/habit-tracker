@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { addDate, toggleHabit } from '../reducers/dateReducer'
+import { Icon } from 'semantic-ui-react'
 
 const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) => {
   const [checked, setChecked] = useState(false)
@@ -22,12 +23,7 @@ const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) 
   }
 
   return (
-    <div style={{ border: 'solid', borderWidth: '1px', backgroundColor: '#d2d2d2', width: '20px' }} onClick={handleClick}>
-      {checked
-        ? 'x'
-        : 'o'
-      }
-    </div>
+    <div onClick={handleClick}>{checked ? <Icon name='circle' /> : <Icon name='circle outline' />}</div>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../reducers/authReducer'
+import { Form } from 'semantic-ui-react'
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState('')
@@ -15,14 +16,12 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <h1>Log In</h1>
-      <form onSubmit={handleLogin}>
-        <p>Username</p>
-        <input type='text' value={username} onChange={(event) => setUsername(event.target.value)} />
-        <p>Password</p>
-        <input type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
-        <button type='submit'>Log in</button>
-      </form>
+      <h2>Log In</h2>
+      <Form onSubmit={handleLogin}>
+        <Form.Input fluid label='Username' placeholder='Username' type='text' value={username} onChange={(event) => setUsername(event.target.value)} />
+        <Form.Input fluid label='Password' placeholder='********' type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
+        <Form.Button type='submit'>Log in</Form.Button>
+      </Form>
     </div>
   )
 }

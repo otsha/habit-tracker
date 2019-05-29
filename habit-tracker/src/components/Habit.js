@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Checkbox from './Checkbox'
 import { deleteHabit, highlightHabit } from '../reducers/habitReducer'
+import { Table, Button, Icon } from 'semantic-ui-react'
 
 const Habit = ({ habit, dates, display, deleteHabit, highlightHabit }) => {
   const [displayDates, setDisplayDates] = useState(dates)
@@ -33,15 +34,24 @@ const Habit = ({ habit, dates, display, deleteHabit, highlightHabit }) => {
   }
 
   return (
-    <tr>
-      <td onClick={toggleHighlighted} style={highlighted ? { backgroundColor: 'yellow' } : { backgroundColor: '' }}>{habit.name}</td>
+    <Table.Row>
+      <Table.Cell onClick={toggleHighlighted} style={highlighted ? { backgroundColor: 'yellow' } : { backgroundColor: '' }}>{habit.name}</Table.Cell>
       {checkboxes.map(box =>
-        <td key={box.i}>
+        <Table.Cell key={box.i}>
           <Checkbox {...box} />
-        </td>)
+        </Table.Cell>)
       }
-      <td><button onClick={() => deleteHabit(habit)}>x</button></td>
-    </tr>
+      <Table.Cell>
+        <Button animated color='red' onClick={() => deleteHabit(habit)}>
+          <Button.Content visible>
+            <Icon name='delete'/>
+          </Button.Content>
+          <Button.Content hidden>
+            DELETE
+          </Button.Content>
+        </Button>
+      </Table.Cell>
+    </Table.Row>
   )
 }
 

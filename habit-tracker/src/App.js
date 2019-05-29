@@ -5,6 +5,7 @@ import HabitForm from './components/HabitForm'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import { autoLogin, logout } from './reducers/authReducer'
+import { Container, Button, Icon, Menu, Header, Grid, Segment, Divider } from 'semantic-ui-react'
 
 const App = (props) => {
 
@@ -18,29 +19,55 @@ const App = (props) => {
 
   const loginView = () => {
     return (
-      <div>
-        <LoginForm />
-        <RegisterForm />
-      </div>
+      <Container>
+        <Header as='h1'>
+          <Icon name='paperclip' />
+          <Header.Content>Habit Tracker</Header.Content>
+        </Header>
+        <Segment>
+          <Grid columns='2' relaxed stackable>
+            <Grid.Column>
+              <LoginForm />
+            </Grid.Column>
+            <Grid.Column verticalAlign='middle'>
+              <RegisterForm />
+            </Grid.Column>
+          </Grid>
+          <Divider vertical>Or</Divider>
+        </Segment>
+      </Container>
     )
   }
 
   const homeView = () => {
     return (
-      <div>
-        <p>Logged in as {props.auth.username}</p>
-        <button onClick={props.logout} >Log out</button>
-        <MonthView />
-        <HabitForm />
-      </div>
+      <>
+        <Menu>
+          <Menu.Item header color='violet' name='title'>
+            <Icon name='paperclip' />
+            Habit Tracker
+          </Menu.Item>
+          <Menu.Item name='loggedInUser'>Logged in as {props.auth.username}</Menu.Item>
+          <Menu.Item position='right' name='logout'>
+            <Button animated onClick={props.logout}>
+              <Button.Content hidden>Log Out</Button.Content>
+              <Button.Content visible><Icon name='log out' /></Button.Content>
+            </Button>
+          </Menu.Item>
+        </Menu>
+        <Container>
+          <MonthView />
+          <Divider horizontal>New Habit</Divider>
+          <HabitForm />
+        </Container>
+      </>
     )
   }
 
   return (
-    <div>
-      <h1>Habit Tracker</h1>
+    <Container fluid>
       {props.auth === null ? loginView() : homeView()}
-    </div>
+    </Container>
   )
 }
 

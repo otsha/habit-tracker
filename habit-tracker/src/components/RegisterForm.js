@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import authService from '../services/authService'
+import { Form } from 'semantic-ui-react'
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('')
@@ -27,16 +28,13 @@ const RegisterForm = () => {
 
   return (
     <div>
-      <h1>Register</h1>
-      <form onSubmit={handleRegister}>
-        <p>Username</p>
-        <input type='text' value={username} onChange={(event) => setUsername(event.target.value)} />
-        <p>Password</p>
-        <input type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
-        <p>Repeat Password</p>
-        <input type='password' value={passwordRepeat} onChange={(event) => setPasswordRepeat(event.target.value)} />
-        <button type='submit'>Log in</button>
-      </form>
+      <h2>Register</h2>
+      <Form onSubmit={handleRegister}>
+        <Form.Input fluid label='Username' placeholder='Enter your desired username' type='text' value={username} onChange={(event) => setUsername(event.target.value)} />
+        <Form.Input fluid label='Password' placeholder='Password' type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
+        <Form.Input fluid label='Repeat Password' placeholder='Repeat Password' type='password' value={passwordRepeat} onChange={(event) => setPasswordRepeat(event.target.value)} />
+        <Form.Button type='submit'>Log in</Form.Button>
+      </Form>
     </div>
   )
 }
