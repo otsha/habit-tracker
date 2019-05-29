@@ -4,7 +4,7 @@ import Habit from './Habit'
 import { addDate, initDates } from '../reducers/dateReducer'
 import { changeDisplayMonth } from '../reducers/displayReducer'
 import { initHabits } from '../reducers/habitReducer'
-import { Table, Button, Icon, Container } from 'semantic-ui-react'
+import { Table, Button, Icon, Container, Label } from 'semantic-ui-react'
 
 const headers = []
 for (let i = 1; i <= 31; i++) {
@@ -25,6 +25,10 @@ const MonthView = (props) => {
   return (
     <Container>
       <h2>{`${props.display.displayMonthName} (${props.display.displayMonth + 1}/${props.display.displayYear})`}</h2>
+      {props.display.displayMonth === props.display.currentDate.getMonth()
+        ? <Label color="teal">Current Month</Label>
+        : <></>
+      }
       <Table striped celled compact='very'>
         <Table.Header>
           <Table.Row>

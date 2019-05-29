@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import { autoLogin, logout } from './reducers/authReducer'
 import { Container, Button, Icon, Menu, Header, Grid, Segment, Divider } from 'semantic-ui-react'
+import HabitDataList from './components/HabitDataList'
 
 const App = (props) => {
 
@@ -21,7 +22,7 @@ const App = (props) => {
     return (
       <Container>
         <Header as='h1'>
-          <Icon name='paperclip' />
+          <Icon name='tasks' />
           <Header.Content>Habit Tracker</Header.Content>
         </Header>
         <Segment>
@@ -44,7 +45,7 @@ const App = (props) => {
       <>
         <Menu>
           <Menu.Item header color='violet' name='title'>
-            <Icon name='paperclip' />
+            <Icon name='tasks' />
             Habit Tracker
           </Menu.Item>
           <Menu.Item name='loggedInUser'>Logged in as {props.auth.username}</Menu.Item>
@@ -57,8 +58,14 @@ const App = (props) => {
         </Menu>
         <Container>
           <MonthView />
-          <Divider horizontal>New Habit</Divider>
+          <Divider horizontal>
+            New Habit
+          </Divider>
           <HabitForm />
+          <Divider horizontal>
+            Stats
+          </Divider>
+          <HabitDataList />
         </Container>
       </>
     )
