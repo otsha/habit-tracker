@@ -6,8 +6,9 @@
 
 ## Documentation
 
-- [Initial Design Document](https://github.com/otsha/habit-tracker/blob/master/documentation/design.md)
+- [User Manual](https://github.com/otsha/habit-tracker/blob/master/documentation/usermanual.md)
 - [Log](https://github.com/otsha/habit-tracker/blob/master/documentation/log.md)
+- [Initial Design Document](https://github.com/otsha/habit-tracker/blob/master/documentation/design.md)
 
 ## Ideas for Further Development
 
