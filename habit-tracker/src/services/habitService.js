@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authService from './authService'
 
-const url = 'http://localhost:3001/api/habits'
+const url = '/api/habits'
 
 const getAll = async () => {
   const config = { headers: { Authorization: authService.getToken() } }
