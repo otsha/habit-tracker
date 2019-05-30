@@ -9,12 +9,9 @@ const HabitData = ({ habit, dates, display }) => {
     const datesDisplayedMonth = dates
       .filter(date => date.year === display.displayYear)
       .filter(date => date.month === display.displayMonth + 1)
-    console.log('dates found for this month:', datesDisplayedMonth)
     const datesWithHabit = datesDisplayedMonth
       .filter(date => date.habitsMarked.find(h => h === habit.id) !== undefined)
-    console.log('dates with habit', habit.name, ':', datesWithHabit)
     const newPercentage = Math.round((datesWithHabit.length / display.displayMonthLength) * 100)
-    console.log(newPercentage)
     setPercentage(newPercentage)
   }, [dates, display.displayMonthLength, display.displayMonth, habit.id])
 

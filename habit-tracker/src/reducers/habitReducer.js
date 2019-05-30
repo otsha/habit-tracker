@@ -21,7 +21,6 @@ export const newHabit = (habitObject) => {
 }
 
 export const deleteHabit = (habit) => {
-  console.log('deleting', habit)
   return async dispatch => {
     await habitService.remove(habit.id)
     dispatch({
@@ -32,7 +31,6 @@ export const deleteHabit = (habit) => {
 }
 
 export const highlightHabit = (habit) => {
-  console.log('highlighting', habit)
   habit.important = !habit.important
   return async dispatch => {
     const highlightedHabit = await habitService.update(habit)

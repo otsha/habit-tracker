@@ -12,7 +12,6 @@ const App = (props) => {
 
   useEffect(() => {
     const storedUser = JSON.parse(window.localStorage.getItem('user'))
-    console.log('found stored user:', storedUser)
     if (storedUser && storedUser.token) {
       props.autoLogin(storedUser)
     }

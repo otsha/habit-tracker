@@ -15,7 +15,6 @@ const Checkbox = ({ thisDate, i, habit, display, addDate, toggleHabit, dates }) 
   })
 
   const handleClick = () => {
-    console.log('Habit', habit.name, 'clicked on day:', i)
     thisDate === undefined
       ? addDate({ day: i, month: display.displayMonth + 1, year: display.displayYear, habitsMarked: [habit] })
       : toggleHabit(thisDate, habit)

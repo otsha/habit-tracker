@@ -13,7 +13,6 @@ const init = {
 }
 
 export const changeDisplayMonth = (value) => {
-  console.log('Changing displayed month to', value)
   return async dispatch => {
     dispatch({
       type: 'CHANGEMONTH',

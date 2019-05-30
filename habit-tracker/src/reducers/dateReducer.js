@@ -11,7 +11,6 @@ export const initDates = () => {
 }
 
 export const addDate = (dateObject) => {
-  console.log('Marking a date for the first time')
   return async dispatch => {
     const addedDate = await dateService.addNew(dateObject)
     dispatch({
