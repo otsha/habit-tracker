@@ -10,6 +10,13 @@ export const login = (userObject) => {
         type: 'LOGIN',
         data: user
       })
+    } else {
+      // Dispatch an error message
+      // (notifications are handled by notificationReducer.js)
+      dispatch({
+        type: 'SETNOTIFICATION',
+        data: 'Login failed. Invalid username or password.'
+      })
     }
   }
 }
@@ -29,6 +36,13 @@ export const logout = () => {
     window.localStorage.setItem('user', null)
     dispatch({
       type: 'LOGOUT'
+    })
+
+    // Dispatch a logout notification
+    // (notifications are handled by notificationReducer.js)
+    dispatch({
+      type: 'SETNOTIFICATION',
+      data: 'Logged out!'
     })
   }
 }

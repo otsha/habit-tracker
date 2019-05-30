@@ -17,6 +17,12 @@ export const newHabit = (habitObject) => {
       type: 'NEWHABIT',
       data: addedHabit
     })
+
+    // Dispatch a notification (Handled @ notificationReducer.js)
+    dispatch({
+      type: 'SETNOTIFICATION',
+      data: `Added new habit: ${habitObject.name}`
+    })
   }
 }
 
@@ -26,6 +32,12 @@ export const deleteHabit = (habit) => {
     dispatch({
       type: 'DELETEHABIT',
       data: habit
+    })
+
+    // Dispatch a notification (Handled @ notificationReducer.js)
+    dispatch({
+      type: 'SETNOTIFICATION',
+      data: `Deleted habit: ${habit.name}`
     })
   }
 }
