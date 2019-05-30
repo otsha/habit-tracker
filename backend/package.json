@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon index.js",
-    "build": "rm -rf build && cd ../habit-tracker && npm install && npm run build && cp -r build ../backend"
+    "build:ui": "rm -rf build && cd ../habit-tracker && npm install && npm run build && cp -r build ../backend"
   },
   "author": "Otso Haavisto",
   "dependencies": {
