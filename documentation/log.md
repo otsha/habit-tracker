@@ -19,5 +19,6 @@
 | 25.4 | ~1,5            | Implement barebones login/register functionality to front-end. No progress on user-sensitivity. |
 | 30.4 | ~1,75           | Both dates and habits are now user-sensitive and fetched from the backend based on the user that's currently logged in. Logins are now stored locally until logged out |
 | 29.5 | ~3,5            | Spent a few hours styling the frontend using Semantic UI + began implementing a way to give visual feedback to users regarding their habits |
+| 30.5 | 4               | Researching, then configuring the backend for deployment on Heroku. Finishing touches on the UI before the deadline + notifications. Tidying up the codebase a little. |
 
-**Total: 31,75 hours**
+**Total: 35,75 hours**
