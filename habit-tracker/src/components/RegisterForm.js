@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import authService from '../services/authService'
-import { Form } from 'semantic-ui-react'
+import { Form, Label, Divider } from 'semantic-ui-react'
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('')
@@ -33,7 +33,10 @@ const RegisterForm = () => {
         <Form.Input fluid label='Username' placeholder='Enter your desired username' type='text' value={username} onChange={(event) => setUsername(event.target.value)} />
         <Form.Input fluid label='Password' placeholder='Password' type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
         <Form.Input fluid label='Repeat Password' placeholder='Repeat Password' type='password' value={passwordRepeat} onChange={(event) => setPasswordRepeat(event.target.value)} />
-        <Form.Button type='submit'>Log in</Form.Button>
+        <Divider hidden />
+        <Label basic color='red'>By registering you agree not to store truly sensitive information on this website</Label>
+        <Divider hidden />
+        <Form.Button type='submit'>Register</Form.Button>
       </Form>
     </div>
   )

@@ -21,7 +21,8 @@ const App = (props) => {
   const loginView = () => {
     return (
       <Container>
-        <Header as='h1'>
+        <Divider hidden />
+        <Header as='h1' icon textAlign='center'>
           <Icon name='tasks' />
           <Header.Content>Habit Tracker</Header.Content>
         </Header>
@@ -74,6 +75,10 @@ const App = (props) => {
   return (
     <Container fluid>
       {props.auth === null ? loginView() : homeView()}
+      <Divider hidden />
+      <Container>
+        <Segment color='purple'><h6>Developed by otsha / <a href='https://github.com/otsha/habit-tracker'>GitHub Repository</a> / <a href='https://github.com/otsha/habit-tracker/blob/master/LICENSE'>GNU GPL 3.0</a></h6></Segment>
+      </Container>
     </Container>
   )
 }
