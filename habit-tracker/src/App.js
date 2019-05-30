@@ -7,6 +7,7 @@ import RegisterForm from './components/RegisterForm'
 import { autoLogin, logout } from './reducers/authReducer'
 import { Container, Button, Icon, Menu, Header, Grid, Segment, Divider } from 'semantic-ui-react'
 import HabitDataList from './components/HabitDataList'
+import Notification from './components/Notification'
 
 const App = (props) => {
 
@@ -25,6 +26,7 @@ const App = (props) => {
           <Icon name='tasks' />
           <Header.Content>Habit Tracker</Header.Content>
         </Header>
+        <Notification />
         <Segment>
           <Grid columns='2' relaxed stackable>
             <Grid.Column>
@@ -57,6 +59,7 @@ const App = (props) => {
           </Menu.Item>
         </Menu>
         <Container>
+          <Notification />
           <MonthView />
           <Divider horizontal>
             New Habit

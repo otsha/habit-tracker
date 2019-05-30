@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import authService from '../services/authService'
 import { Form, Label, Divider } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordRepeat, setPasswordRepeat] = useState('')
@@ -13,12 +15,12 @@ const RegisterForm = () => {
     if (password === passwordRepeat) {
       const registeredUser = await authService.register({ username: username, password: password })
       if (registeredUser) {
-        console.log('registration successful')
+        props.setNotification('Registration successful! You may now log in.')
       } else {
-        console.log('registration failed')
+        props.setNotification('Registration failed. Username may already be in use.')
       }
     } else {
-      console.log('passwords not matching')
+      props.setNotification('Passwords Not Matching')
     }
 
     setUsername('')
@@ -42,4 +44,8 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+const mapDispatchToProps = {
+  setNotification
+}
+
+export default connect(null, mapDispatchToProps)(RegisterForm)
