@@ -23,6 +23,13 @@ export const newHabit = (habitObject) => {
       type: 'SETNOTIFICATION',
       data: `Added new habit: ${habitObject.name}`
     })
+
+    setTimeout(() => {
+      dispatch({
+        type: 'SETNOTIFICATION',
+        data: null
+      })
+    }, 4000)
   }
 }
 
@@ -39,6 +46,13 @@ export const deleteHabit = (habit) => {
       type: 'SETNOTIFICATION',
       data: `Deleted habit: ${habit.name}`
     })
+
+    setTimeout(() => {
+      dispatch({
+        type: 'SETNOTIFICATION',
+        data: null
+      })
+    }, 4000)
   }
 }
 

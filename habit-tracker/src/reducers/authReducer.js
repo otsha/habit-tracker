@@ -17,6 +17,13 @@ export const login = (userObject) => {
         type: 'SETNOTIFICATION',
         data: 'Login failed. Invalid username or password.'
       })
+
+      setTimeout(() => {
+        dispatch({
+          type: 'SETNOTIFICATION',
+          data: null
+        })
+      }, 4000)
     }
   }
 }
@@ -44,6 +51,13 @@ export const logout = () => {
       type: 'SETNOTIFICATION',
       data: 'Logged out!'
     })
+
+    setTimeout(() => {
+      dispatch({
+        type: 'SETNOTIFICATION',
+        data: null
+      })
+    }, 4000)
   }
 }
 

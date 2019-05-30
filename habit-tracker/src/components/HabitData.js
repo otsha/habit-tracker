@@ -17,9 +17,9 @@ const HabitData = ({ habit, dates, display }) => {
 
   return (
     <Segment key={habit.id}>
-      {habit.name}
+      <h4>{habit.name}</h4>
       <Progress percent={percentage} indicating />
-      {percentage} %
+      {percentage} % daily habit
     </Segment>
   )
 }

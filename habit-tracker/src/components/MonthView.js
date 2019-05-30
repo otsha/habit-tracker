@@ -4,7 +4,7 @@ import Habit from './Habit'
 import { addDate, initDates } from '../reducers/dateReducer'
 import { changeDisplayMonth } from '../reducers/displayReducer'
 import { initHabits } from '../reducers/habitReducer'
-import { Table, Button, Icon, Container, Label } from 'semantic-ui-react'
+import { Table, Button, Icon, Container, Label, Divider } from 'semantic-ui-react'
 
 const headers = []
 for (let i = 1; i <= 31; i++) {
@@ -29,26 +29,32 @@ const MonthView = (props) => {
         ? <Label color="teal">Current Month</Label>
         : <></>
       }
-      <Table striped celled compact='very'>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Habit</Table.HeaderCell>
-            {headers.slice(0, props.display.displayMonthLength).map(header => header)}
-            <Table.HeaderCell>Delete</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {props.habits.map(h => <Habit key={h.name} habit={h} />)}
-        </Table.Body>
-      </Table>
-      <Button onClick={() => props.changeDisplayMonth(props.display.displayMonth - 1)}>
+      <Divider hidden />
+      <Container style={{ overflowX: 'scroll' }}>
+        <Table striped celled compact='very'>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Habit</Table.HeaderCell>
+              {headers.slice(0, props.display.displayMonthLength).map(header => header)}
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {props.habits.map(h => <Habit key={h.name} habit={h} />)}
+          </Table.Body>
+        </Table>
+      </Container>
+      <Divider hidden />
+      <Button icon labelPosition='left' onClick={() => props.changeDisplayMonth(props.display.displayMonth - 1)}>
+        <Icon name='angle left' />
         <Button.Content>
-          <Icon name='angle left' />
+          Previous Month
         </Button.Content>
       </Button>
-      <Button onClick={() => props.changeDisplayMonth(props.display.displayMonth + 1)}>
+      <Button icon labelPosition='right' onClick={() => props.changeDisplayMonth(props.display.displayMonth + 1)}>
+        <Icon name='angle right' />
         <Button.Content>
-          <Icon name='angle right' />
+          Next Month
         </Button.Content>
       </Button>
     </Container>

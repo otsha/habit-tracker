@@ -25,6 +25,7 @@ const App = (props) => {
         <Header as='h1' icon textAlign='center'>
           <Icon name='tasks' />
           <Header.Content>Habit Tracker</Header.Content>
+          <Header.Subheader>FOR DEMONSTRATION PURPOSES ONLY</Header.Subheader>
         </Header>
         <Notification />
         <Segment>
@@ -51,6 +52,7 @@ const App = (props) => {
             Habit Tracker
           </Menu.Item>
           <Menu.Item name='loggedInUser'>Logged in as {props.auth.username}</Menu.Item>
+          <Menu.Item name='demo'>FOR DEMONSTRATION PURPOSES ONLY</Menu.Item>
           <Menu.Item position='right' name='logout'>
             <Button animated onClick={props.logout}>
               <Button.Content hidden>Log Out</Button.Content>
@@ -79,7 +81,9 @@ const App = (props) => {
       {props.auth === null ? loginView() : homeView()}
       <Divider hidden />
       <Container>
-        <Segment color='purple'><h6>Developed by otsha / <a href='https://github.com/otsha/habit-tracker'>GitHub Repository</a> / <a href='https://github.com/otsha/habit-tracker/blob/master/LICENSE'>GNU GPL 3.0</a></h6></Segment>
+        <Segment color='purple'>
+          <h6>Developed by otsha / <a href='https://github.com/otsha/habit-tracker'>GitHub Repository</a> / <a href='https://github.com/otsha/habit-tracker/blob/master/LICENSE'>GNU GPL 3.0</a></h6>
+        </Segment>
       </Container>
     </Container>
   )
